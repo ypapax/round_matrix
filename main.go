@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	round(4)
+	round(6)
 }
 
 func round(N int) {

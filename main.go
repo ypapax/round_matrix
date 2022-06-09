@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	round(3)
+	round(4)
 }
 
 func round(N int) {
@@ -19,13 +19,32 @@ func round(N int) {
 
 func printMatrix(m [][]int) {
 	log.Println("matrix")
+	var biggestNumber int
+	for _, l := range m {
+		for _, v := range l {
+			if v > biggestNumber {
+				biggestNumber = v
+			}
+		}
+	}
+	spaceLen := 2 * len(fmt.Sprintf("%d", biggestNumber))
 	for _, l := range m {
 		var line string
 		for _, v := range l {
-			line += fmt.Sprintf(" %+v", v)
+			line += fmt.Sprintf(spaces(v, spaceLen)+"%+v", v)
 		}
 		log.Println(line)
 	}
+}
+
+func spaces(i int, maxLen int) string {
+	numberLen := len(fmt.Sprintf("%+v", i))
+	spacesCount := maxLen - numberLen
+	var s string
+	for j := 0; j < spacesCount; j++ {
+		s += " "
+	}
+	return s
 }
 
 func roundM(m [][]int, topRow int, N int, counter int) {
